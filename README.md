@@ -1,4 +1,10 @@
-# Rang Strategies website — initial homepage review
+# Rang Strategies website
+
+## Site structure
+
+The homepage contains four sections: hero, services overview, selected career results, and a brief contact invitation. The founder introduction is entirely on `about.html`. Supporting content is preserved on `services.html`, `approach.html`, `experience.html`, `assessment.html`, and `contact.html`. Navigation, service links, result links, and the contact invitation lead to those pages.
+
+Run `npm run preview:file` to generate the linked, self-contained review pages, starting at `review/homepage.html`. The existing questionnaire is still pending its source, and no `results.js` is changed or replaced.
 
 Responsive, dependency-free homepage using the supplied Rang Strategies identity. This directory is independent of the read-only synced `sources/` directory. No source career documents are served or included in the website.
 
@@ -12,9 +18,9 @@ Repository: https://github.com/rang-strat/website. The local Git remote is conne
 
 ## Questionnaire integration
 
-The provided project contains no application repository, questionnaire route, or `results.js`. This implementation creates none of those files and does not change questionnaire behavior. The homepage currently opens an explicit integration-pending dialog. It does not simulate results, collect responses, or present an invented assessment.
+The provided project contains no questionnaire route or `results.js`. This implementation creates none of those files and does not change questionnaire behavior. The homepage links to `assessment.html`, which currently opens an explicit integration-pending dialog. It does not simulate results, collect responses, or present an invented assessment.
 
-When the questionnaire source becomes available, preserve its route and `results.js`, and set `assessmentUrl` in `config.js` to its confirmed route or URL. The homepage will use that link directly and hide the integration-pending label. If the route is local, use its actual application server; this minimal preview server does not provide SPA fallbacks or questionnaire hosting. Confirm the questionnaire's wording against the introductory topic labels before launch.
+When the questionnaire source becomes available, preserve its route and `results.js`, and set `assessmentUrl` in `config.js` to its confirmed route or URL. The assessment page will use that link directly and hide the integration-pending label. If the route is local, use its actual application server; this minimal preview server does not provide SPA fallbacks or questionnaire hosting. Confirm the questionnaire's wording against the introductory topic labels before launch.
 
 ## Contact
 
@@ -45,10 +51,10 @@ The source documents are retained in the parent project's read-only `sources/` d
 
 ## Publication status
 
-The user approved the initial homepage and authorized uploading it to GitHub on October 16, 2026. Deployment is a separate step and still requires approval. Questionnaire integration remains pending its existing source.
+The user approved the shorter homepage and authorized completing the linked pages and submitting a pull request. Production deployment and merging the pull request are separate steps. Questionnaire integration remains pending its existing source.
 
 ## Review verification
 
 JavaScript syntax checks pass for the application, configuration, local server, and preview builder. Static checks confirm unique IDs, valid internal anchor targets, existing asset paths, byte-identical copies of supplied brand assets, and a self-contained generated preview. No browser layout or interaction checks have completed: the current environment blocks local server listening and browser navigation to local files. Desktop/mobile visual inspection, keyboard navigation, and modal/menu interaction verification remain pending in an allowed HTTP preview or the user's browser.
 
-New files: `index.html`, `styles.css`, `app.js`, `config.js`, `server.mjs`, `build-preview.mjs`, `package.json`, `.gitignore`, this `README.md`, and four files under `assets/`. Generated local review output lives in `review/` and is ignored. Synced source documents and any external questionnaire repository are unchanged.
+The site contains seven HTML pages, shared `styles.css` and `app.js`, `config.js`, local preview tooling, this `README.md`, and four supplied brand assets. Generated local review output lives in `review/` and is ignored. Synced source documents and any external questionnaire repository are unchanged.
