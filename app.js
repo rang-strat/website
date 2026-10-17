@@ -36,19 +36,19 @@ mobileViewport.addEventListener('change', (event) => {
   closeMenu();
 });
 
-if (siteConfig.assessmentUrl) {
+if (assessmentLink && siteConfig.assessmentUrl) {
   assessmentLink.href = siteConfig.assessmentUrl;
   assessmentLink.firstChild.textContent = 'Start the questionnaire ';
   document.querySelector('#assessment-status').hidden = true;
-} else {
+} else if (assessmentLink) {
   assessmentLink.addEventListener('click', (event) => {
     event.preventDefault();
     assessmentDialog.showModal();
   });
 }
 
-document.querySelector('.dialog-close').addEventListener('click', () => assessmentDialog.close());
-assessmentDialog.addEventListener('click', (event) => {
+document.querySelector('.dialog-close')?.addEventListener('click', () => assessmentDialog.close());
+assessmentDialog?.addEventListener('click', (event) => {
   const bounds = assessmentDialog.getBoundingClientRect();
   if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
     assessmentDialog.close();
@@ -59,5 +59,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
   const subject = link.getAttribute('href').split('?')[1];
   link.href = `mailto:${siteConfig.contactEmail}${subject ? `?${subject}` : ''}`;
 });
-document.querySelector('.email-link').textContent = siteConfig.contactEmail;
+document.querySelectorAll('.email-link').forEach((link) => {
+  link.textContent = siteConfig.contactEmail;
+});
 document.querySelector('#year').textContent = String(new Date().getFullYear());
