@@ -2,9 +2,11 @@
 
 Project: `rang_strategies_website` (`eaaztjuoylttpnjrrkcn`). The project URL is public configuration; credentials never belong in this repository.
 
+Migration `20261022033744_website_leads.sql` was applied to this project through the authenticated Supabase integration on 2026-10-22 UTC. Its version matches the remote migration history so subsequent deployments skip it. Lead capture, duplicate handling, and rate limiting were verified in a rolled-back transaction; no test leads were retained and no emails were sent. Row-level security and server-only privileges were verified. Live website-to-email delivery remains unverified.
+
 ## Deployment order
 
-1. Review `migrations/20261021000100_website_leads.sql` in the pull request. It creates two new tables and a restricted function; it does not create user accounts or change assessment data.
+1. Review `migrations/20261022033744_website_leads.sql` in the pull request. It creates two new tables and a restricted function; it does not create user accounts or change assessment data.
 2. In Supabase's GitHub integration, use working directory `.` and the website repository. Enable deployment to production only when ready to apply reviewed migrations after merging. Preview branches should use their own database and credentials. `config.toml` enables migrations without changing Auth settings or seeding data.
 3. Confirm the migration has applied successfully before enabling the contact form deployment. Alternatively apply it using an authenticated Supabase CLI deployment (`supabase link --project-ref eaaztjuoylttpnjrrkcn`, then `supabase db push`). Do not run both manual SQL and migration deployment without reconciling migration history.
 4. Verify these server-only Vercel environment variables are configured: `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`. Use the verified Resend sender for `CONTACT_FROM_EMAIL`; the recipient is `henryz@rangstrategies.com`. Do not use the publishable Supabase key for this endpoint. Never prefix these secrets with a public/browser prefix.
