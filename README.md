@@ -4,34 +4,36 @@
 
 The homepage contains four sections: hero, services overview, selected career results, and a brief contact invitation. The founder introduction is entirely on `about.html`. Supporting content is preserved on `services.html`, `approach.html`, `experience.html`, `assessment.html`, and `contact.html`. Navigation, service links, result links, and the contact invitation lead to those pages.
 
-Run `npm run preview:file` to generate the linked, self-contained review pages, starting at `review/homepage.html`. The existing questionnaire is still pending its source, and no `results.js` is changed or replaced.
+Run `npm run preview:file` to generate the linked, self-contained review pages, starting at `review/homepage.html`. The homepage links directly to the externally hosted 7-question AI readiness assessment. No assessment scoring logic or `results.js` is changed or replaced.
 
-Responsive, dependency-free homepage using the supplied Rang Strategies identity. This directory is independent of the read-only synced `sources/` directory. No source career documents are served or included in the website.
+Responsive website using the supplied Rang Strategies identity, with a server-side contact endpoint and no third-party runtime dependencies. This directory is independent of the read-only synced `sources/` directory. No source career documents are served or included in the website.
 
 ## Preview
 
-Run `npm start` in this directory, then open http://127.0.0.1:4173. Requires Node.js 18 or later. Run `npm run check` for JavaScript syntax checks. The static files can later be integrated into the chosen application framework or hosted as a static site; `server.mjs` is for local review only.
+Run `npm start` in this directory, then open http://127.0.0.1:4173. Requires Node.js 24. The command builds public files into `dist/` and loads `.env.local` for the contact endpoint. Run `npm run check` for JavaScript syntax checks. `server.mjs` is the local development server; Vercel runs `api/contact.js` for form submissions in deployed environments.
 
 If local server permissions are unavailable, run `npm run preview:file` and open `review/homepage.html` directly in a browser. This creates a self-contained copy with the exact homepage styles, assets, configuration, and interactions embedded. It is generated review output and is ignored by Git. Rebuild it after source changes.
 
 Repository: https://github.com/rang-strat/website. The local Git remote is connected. The initial homepage upload was approved on October 16, 2026.
 
-## Questionnaire integration
+## AI Readiness Assessment
 
-The provided project contains no questionnaire route or `results.js`. This implementation creates none of those files and does not change questionnaire behavior. The homepage links to `assessment.html`, which currently opens an explicit integration-pending dialog. It does not simulate results, collect responses, or present an invented assessment.
+The assessment is hosted at https://questionnaire.rangstrategies.com. The homepage navigation, hero call to action, and footer link directly to that URL. The existing `assessment.html` overview remains available from other pages and now has an active assessment link instead of an integration-pending dialog.
 
-When the questionnaire source becomes available, preserve its route and `results.js`, and set `assessmentUrl` in `config.js` to its confirmed route or URL. The assessment page will use that link directly and hide the integration-pending label. If the route is local, use its actual application server; this minimal preview server does not provide SPA fallbacks or questionnaire hosting. Confirm the questionnaire's wording against the introductory topic labels before launch.
+`assessmentUrl` in `config.js` configures links marked with `data-assessment-link`. Those anchors also contain the destination in their HTML so they work without JavaScript. Visible copy refers to the tool as an AI Readiness Assessment or a 7-question AI readiness assessment. The website does not change the external assessment, its data storage, user accounts, or results.
 
 ## Contact
 
-Contact actions open an email draft addressed to the business email supplied in the brag sheet. They do not send email or save lead data. The LinkedIn link is from the same document. No analytics, external fonts, cookies, or third-party requests are added.
+The contact page collects name, email, company, optional phone/job title/service interest, a message, required inquiry contact permission, and separate optional marketing permission. Visitors do not need an account. The server validates submissions, applies a shared rate limit, saves the inquiry to Supabase, then sends a Resend notification to `henryz@rangstrategies.com` with the visitor's reply-to address. Delivery failures do not discard saved leads. Email links remain available as an alternative. See [deployment and operations](supabase/README.md) for migration setup, environment variables, access rules, notification failure handling, and retention. There is no automatic notification retry job in this version.
+
+Only public website files are copied into `dist/`. The Supabase secret and Resend key are read exclusively by server-side code. No analytics, external fonts, browser tracking cookies, or automatic visitor emails are added. The public contact API is the browser's only submission destination.
 
 ## Design
 
 - Deep olive `#334B2A`, sage `#8FA77A`, warm cream `#F5F0E6`, charcoal `#232A25`.
 - Supplied full-color and cream knockout horizontal logos, with original proportions and a minimum display width of 220px. The supplied monogram replaces the full wordmark on screens 400px wide and below.
 - Editorial serif headings, system sans-serif text, and an original SVG data-foundation illustration.
-- Responsive navigation, reduced-motion support, skip link, visible keyboard focus, semantic headings, and native modal dialog.
+- Responsive navigation, reduced-motion support, skip link, visible keyboard focus, and semantic headings.
 - The founder monogram is an intentional typographic treatment; no photograph was supplied or fabricated.
 
 ## Content provenance
@@ -51,10 +53,10 @@ The source documents are retained in the parent project's read-only `sources/` d
 
 ## Publication status
 
-The user approved the shorter homepage and authorized completing the linked pages and submitting a pull request. Production deployment and merging the pull request are separate steps. Questionnaire integration remains pending its existing source.
+The shorter homepage and linked pages were merged through pull request #1. The contact lead-capture migration and the reviewed assessment-link/button updates are prepared together for a new pull request. Applying the migration and merging or deploying to production remain separate review steps.
 
 ## Review verification
 
-JavaScript syntax checks pass for the application, configuration, local server, and preview builder. Static checks confirm unique IDs, valid internal anchor targets, existing asset paths, byte-identical copies of supplied brand assets, and a self-contained generated preview. No browser layout or interaction checks have completed: the current environment blocks local server listening and browser navigation to local files. Desktop/mobile visual inspection, keyboard navigation, and modal/menu interaction verification remain pending in an allowed HTTP preview or the user's browser.
+Validation includes JavaScript syntax checks, public-site and self-contained preview builds, internal link/accessibility-label checks, and isolated request-handler tests with fake upstream responses. These tests do not submit real leads, send real email, or apply the database migration. Live end-to-end validation must confirm the migration, environment scopes, and delivery in an approved staging environment before production launch.
 
-The site contains seven HTML pages, shared `styles.css` and `app.js`, `config.js`, local preview tooling, this `README.md`, and four supplied brand assets. Generated local review output lives in `review/` and is ignored. Synced source documents and any external questionnaire repository are unchanged.
+The site contains seven HTML pages, shared `styles.css` and `app.js`, `config.js`, local preview tooling, this `README.md`, and four supplied brand assets. Generated local review output lives in `review/` and is ignored. Synced source documents and any external assessment repository are unchanged.

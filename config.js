@@ -1,4 +1,4 @@
 export const siteConfig = Object.freeze({
-  assessmentUrl: null,
+  assessmentUrl: 'https://questionnaire.rangstrategies.com',
   contactEmail: 'henryz@rangstrategies.com',
 });

@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": { "node": "24.x" },
   "scripts": {
-    "start": "node server.mjs",
+    "start": "node build-site.mjs && node --env-file-if-exists=.env.local server.mjs",
+    "build": "node build-site.mjs",
     "preview:file": "node build-preview.mjs",
-    "check": "node --check app.js && node --check config.js && node --check server.mjs && node --check build-preview.mjs"
+    "check": "node --check app.js && node --check contact.js && node --check api/contact.js && node --check lib/contact.mjs && node --check config.js && node --check server.mjs && node --check build-preview.mjs && node --check build-site.mjs"
   }
 }
