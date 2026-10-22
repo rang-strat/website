@@ -1,0 +1,7 @@
+project_id = "rang_strategies_website"
+
+[db.migrations]
+enabled = true
+
+[db.seed]
+enabled = false

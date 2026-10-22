@@ -2,8 +2,7 @@ import { siteConfig } from './config.js';
 
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#main-nav');
-const assessmentLink = document.querySelector('#assessment-link');
-const assessmentDialog = document.querySelector('#assessment-details');
+const assessmentLinks = document.querySelectorAll('[data-assessment-link]');
 const mobileViewport = window.matchMedia('(max-width: 680px)');
 
 navigation.dataset.collapsible = 'true';
@@ -36,24 +35,11 @@ mobileViewport.addEventListener('change', (event) => {
   closeMenu();
 });
 
-if (assessmentLink && siteConfig.assessmentUrl) {
-  assessmentLink.href = siteConfig.assessmentUrl;
-  assessmentLink.firstChild.textContent = 'Start the questionnaire ';
-  document.querySelector('#assessment-status').hidden = true;
-} else if (assessmentLink) {
-  assessmentLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    assessmentDialog.showModal();
+if (siteConfig.assessmentUrl) {
+  assessmentLinks.forEach((link) => {
+    link.href = siteConfig.assessmentUrl;
   });
 }
-
-document.querySelector('.dialog-close')?.addEventListener('click', () => assessmentDialog.close());
-assessmentDialog?.addEventListener('click', (event) => {
-  const bounds = assessmentDialog.getBoundingClientRect();
-  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
-    assessmentDialog.close();
-  }
-});
 
 document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
   const subject = link.getAttribute('href').split('?')[1];

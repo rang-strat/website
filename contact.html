@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="app.js"></script>
+  <script type="module" src="contact.js"></script>
 </head>
 <body class="detail-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -27,7 +28,35 @@
     </div>
   </header>
   <main id="main">
-<section class="container page-intro"><a class="breadcrumb" href="index.html">Home <span aria-hidden="true">/</span></a><p class="eyebrow">CONTACT</p><h1>Let’s discuss<br><em>what comes next.</em></h1><p class="page-description">Share where you are, what you want to achieve, and what is getting in the way.</p></section><section class="section container contact" id="contact" aria-labelledby="contact-title"><div><p class="eyebrow">LET’S BUILD WHAT’S NEXT</p><h2 id="contact-title">Tell us what you’re<br><em>working toward.</em></h2><p>Discuss your data priorities, modernization plans, or a potential consulting engagement directly with Henry.</p></div><div class="contact-action"><a class="button button-olive" href="mailto:henryz@rangstrategies.com?subject=Let%E2%80%99s%20discuss%20a%20Rang%20Strategies%20engagement">Start a conversation <span aria-hidden="true">↗</span></a><a class="email-link" href="mailto:henryz@rangstrategies.com">henryz@rangstrategies.com</a><span>Pittsburgh, PA · Working wherever you are</span></div></section>
+<section class="container page-intro"><a class="breadcrumb" href="index.html">Home <span aria-hidden="true">/</span></a><p class="eyebrow">CONTACT</p><h1>Let’s discuss<br><em>what comes next.</em></h1><p class="page-description">Share where you are, what you want to achieve, and what is getting in the way.</p></section><section class="section container contact contact-with-form" id="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">LET’S BUILD WHAT’S NEXT</p>
+        <h2 id="contact-title">Tell us what you’re<br><em>working toward.</em></h2>
+        <p>Discuss your data priorities, modernization plans, or a potential consulting engagement directly with Henry.</p>
+        <a class="email-link" href="mailto:henryz@rangstrategies.com">henryz@rangstrategies.com</a>
+        <p class="contact-location">Pittsburgh, PA · Working wherever you are</p>
+      </div>
+      <form id="contact-form" class="contact-form" action="/api/contact" method="post" aria-label="Contact Rang Strategies" aria-describedby="contact-privacy">
+        <p class="form-intro">A few details to start the conversation.<br><span>Fields marked * are required.</span></p>
+        <div class="contact-fields">
+          <label>Full name *<input name="name" autocomplete="name" maxlength="100" required></label>
+          <label>Email *<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+          <label>Company *<input name="company" autocomplete="organization" maxlength="160" required></label>
+          <label>Phone <span class="optional">(optional)</span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+          <label>Job title <span class="optional">(optional)</span><input name="jobTitle" autocomplete="organization-title" maxlength="120"></label>
+          <label>Service of interest <span class="optional">(optional)</span><select name="serviceInterest"><option value="">Please select</option><option>Data Strategy &amp; Advisory</option><option>Data Architecture &amp; Data Pipeline Design</option><option>Implementation &amp; Delivery</option><option>AI Readiness</option><option>Other</option></select></label>
+          <label class="full-width">How can we help? *<textarea name="message" rows="5" minlength="10" maxlength="5000" required aria-describedby="message-guidance"></textarea></label>
+        </div>
+        <p id="message-guidance" class="form-guidance">Please don’t include patient information or other sensitive records.</p>
+        <div class="form-trap" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="contact-check"><input name="contactConsent" type="checkbox" required><span>I agree that Rang Strategies may contact me about this inquiry. *</span></label>
+        <label class="contact-check"><input name="marketingOptIn" type="checkbox"><span>I would also like occasional Rang Strategies insights and updates. (Optional)</span></label>
+        <details id="contact-privacy" class="contact-privacy"><summary>How we use your information</summary><p>Your details are stored securely and used to respond to your inquiry. A notification is sent to Henry through our email provider. Marketing updates require the separate optional selection above. No account is created. To request deletion, email henryz@rangstrategies.com.</p></details>
+        <button id="contact-submit" class="button button-olive" type="submit" disabled>Send inquiry <span aria-hidden="true">↗</span></button>
+        <p id="contact-status" class="contact-status" role="status" aria-live="polite" tabindex="-1"></p>
+        <noscript><p>Please enable JavaScript to use this form, or email henryz@rangstrategies.com.</p></noscript>
+      </form>
+    </section>
   </main>
   <footer class="site-footer"><div class="container footer-main"><a class="footer-brand" href="index.html#home"><img src="assets/logo-cream.png" alt="Rang Strategies LLC" width="1815" height="645" loading="lazy"></a><p>Data Modernization for the AI Era<br><span>Healthcare and Life Sciences</span></p><a href="#main" class="back-top">Back to top <span aria-hidden="true">↑</span></a></div><nav class="container footer-links" aria-label="Footer navigation"><a href="services.html">Services</a><a href="approach.html">Approach</a><a href="about.html">About</a><a href="experience.html">Experience &amp; Results</a><a href="assessment.html">AI Readiness Assessment</a><a href="contact.html">Contact</a></nav><div class="container footer-bottom"><span>© <span id="year">2026</span> Rang Strategies LLC</span><span>Data Strategy · Architecture · AI Advisory</span></div></footer>
 </body>
