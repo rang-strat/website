@@ -2,6 +2,25 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/contact.js": { "maxDuration": 30 }
-  }
+    "api/contact.js": {
+      "maxDuration": 30
+    }
+  },
+  "redirects": [
+    {
+      "source": "/ranglite",
+      "destination": "/ranglite/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/ranglite/",
+      "destination": "https://ranglite.vercel.app/"
+    },
+    {
+      "source": "/ranglite/:path*",
+      "destination": "https://ranglite.vercel.app/:path*"
+    }
+  ]
 }
